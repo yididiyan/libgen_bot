@@ -10,7 +10,10 @@ from telegram import ChatAction
 
 
 def start(bot, update):
-    bot.send_message(chat_id=update.message.chat_id, text='Im the bot you have been looking for quite sometime!!')
+    bot.send_message(chat_id=update.message.chat_id, 
+                    text='Hola amigo, We\'re glad you\'re here\
+                    <b>Commands</b> \
+                    \n/search -keyword- -- Search books by title', parse_mode=ParseMode.HTML)
 
 def fetch(bot, update, **kwargs):
     md5 = update.effective_message.text[4:]
@@ -24,7 +27,7 @@ def emojize_book_list(books):
 def search(bot, update, args):
     bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
     results = api.search(' '.join(args))
-    bot.send_message(chat_id=update.message.chat_id, text=(emojize_book_list(results) if results  else 'No results Found!!'), parse_mode=ParseMode.HTML)
+    bot.send_message(chat_id=update.message.chat_id, text=(emojize_book_list(results) if results  else 'Oops, no results found!!'), parse_mode=ParseMode.HTML)
 
 
 
