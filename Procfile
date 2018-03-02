@@ -1,1 +1,1 @@
-web: python libgen_bot/bot.py
+bot: python3 libgen_bot/bot.py
