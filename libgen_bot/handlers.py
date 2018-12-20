@@ -1,5 +1,5 @@
 '''
-Command handlers, MessageHandlers here 
+Command handlers, MessageHandlers here
 
 '''
 
@@ -10,7 +10,7 @@ from telegram import ChatAction
 
 
 def start(bot, update):
-    bot.send_message(chat_id=update.message.chat_id, 
+    bot.send_message(chat_id=update.message.chat_id,
                     text='Hola amigo, We\'re glad you\'re here\
                     <b>Commands</b> \
                     \n/search -keyword- -- Search books by title', parse_mode=ParseMode.HTML)
@@ -29,5 +29,8 @@ def search(bot, update, args):
     results = api.search(' '.join(args))
     bot.send_message(chat_id=update.message.chat_id, text=(emojize_book_list(results) if results  else 'Oops, no results found!!'), parse_mode=ParseMode.HTML)
 
-
-
+def search_with_out_command(bot, update):
+    bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
+    results = api.search(update.message.text)
+    bot.send_message(chat_id=update.message.chat_id, text=(emojize_book_list(results) if results  else 'Oops, no results found!!'), parse_mode=ParseMode.HTML)
+    
