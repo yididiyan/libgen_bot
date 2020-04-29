@@ -36,7 +36,7 @@ pyflakes==1.2.3
 Pygments==2.2.0
 python-telegram-bot==9.0.0
 pytz==2018.3
-PyYAML==3.11
+PyYAML==5.1
 simplegeneric==0.8.1
 six==1.11.0
 snowballstemmer==1.2.1
