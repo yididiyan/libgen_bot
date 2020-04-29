@@ -3,18 +3,15 @@ from bs4 import BeautifulSoup
 
 
 BASE_URL = 'http://gen.lib.rus.ec/'
-BASE_DOWNLAOD_LINK = 'http://libgen.io/ads.php'
+BASE_DOWNLAOD_LINK = 'http://libgen.lc/ads.php'
 
 def browse(term):
-    url = BASE_URL + 'search.php/?req=' + (term.replace(' ', '+'))
+    url = BASE_URL + 'search.php?req=' + (term.replace(' ', '+'))
     result = urllib.request.urlopen(url)
-    assert result
-    
     return result
 
 def get_dict_of_books(result):
     results = []
-
     soup = BeautifulSoup(result, 'html.parser')
     soup = soup.find_all('table', attrs={'align': 'center'})[0]
     search_results = soup.find_all('tr') [1:]
@@ -46,7 +43,7 @@ def fetch(md5):
     result = urllib.request.urlopen(url)
     soup = BeautifulSoup(result, 'html.parser')
     
-    return soup.table.find_all('td')[2].a['href']
+    return soup.table.find_all('a')[0]['href']
 
 def search(term):
     return get_dict_of_books(browse(term))

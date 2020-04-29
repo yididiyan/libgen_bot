@@ -3,7 +3,7 @@ import logging, re
 from telegram import MessageEntity
 from  telegram.ext import Updater, MessageHandler, Filters, CommandHandler, RegexHandler
 
-from handlers import start,search, fetch, search_with_out_command
+from handlers import start,search, fetch, search_or_fetch
 from config import API_KEY
 
 
@@ -17,11 +17,11 @@ if __name__== '__main__':
 
     updater = Updater(API_KEY)
     dispatcher = updater.dispatcher
-    message_handler = MessageHandler(Filters.text, search_with_out_command)
+    message_handler = MessageHandler(Filters.text, search_or_fetch)
     start_handler = CommandHandler('start', start)
     search_handler = CommandHandler('search', search, pass_args=True)
     test_handler = CommandHandler('test', search, pass_args=True)
-    fetch_handler = RegexHandler(re.compile('/get[0-9A-F]{32}'), fetch, pass_chat_data=True)
+    #fetch_handler = RegexHandler(re.compile('/get[0-9A-F]{32}'), fetch, pass_chat_data=True)
 
 
     ## Add handlers to dispatcher
@@ -29,7 +29,7 @@ if __name__== '__main__':
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(search_handler)
     dispatcher.add_handler(test_handler)
-    dispatcher.add_handler(fetch_handler)
+    #dispatcher.add_handler(fetch_handler)
 
     print('INFO: Starting bot... ')
     updater.start_polling()
