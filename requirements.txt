@@ -4,7 +4,7 @@ Babel==2.5.3
 beautifulsoup4==4.6.0
 bs4==0.0.1
 bumpversion==0.5.3
-certifi==2018.1.18
+certifi==2022.12.7
 cffi==1.11.5
 coverage==4.1
 decorator==4.2.1
